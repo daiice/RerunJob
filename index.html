@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rerun Jobs Tool_V3 by Daiice</title>
+
+	<!-- ป้องกันการแคช -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+	
+    <title>Rerun Jobs Tool_V4 by Daiice</title>
     <style>
         * {
             margin: 0;
@@ -121,6 +127,15 @@
             color: #333;
             font-size: 16px;
         }
+		
+		.table-wrapper label {
+			display: block;
+			width: 100%;
+			color: #999999;
+			font-size: 9px;
+			text-align: right;
+			margin-bottom: 3px;
+		}
         
         .input-group input, .input-group textarea {
             width: 100%;
@@ -443,7 +458,7 @@
 <body>
     <div class="main-container">
 		<div class="header">
-            <h1>🛠️ Rerun Jobs Tool_V3 by Daiice</h1>
+            <h1>🛠️ Rerun Jobs Tool_V4 by Daiice</h1>
             <p>เครื่องมือสำหรับสร้างข้อความ ค้นหา log และคำนวณ Odate</p>
         </div>
 		
@@ -503,6 +518,7 @@
             </div>
 
             <div class="table-wrapper">
+				<label>⭐ Developed by Dai Kittipanvoragul.</label>
                 <table id="resultTable" style="display:none">
                     <thead>
                         <tr>
@@ -955,37 +971,18 @@
             const html = `
                 <div class="email-preview">
                     <div class="email-subject">
-                        <strong>หัวเรื่อง:</strong> ${subject}
+                        ${subject}
                     </div>
                     <div class="email-body-odate">
                         ${htmlBody}
                     </div>
                 </div>
-                <button class="btn-success" onclick="copyOdateEmail()">📋 คัดลอกข้อความ</button>
             `;
             
             resultDiv.innerHTML = html;
             resultDiv.classList.add('show');
             
             window.odateEmailText = `${subject}\n\n${emailBody.replace(/\*\*/g, '')}`;
-        }
-
-        function copyOdateEmail() {
-            const text = window.odateEmailText;
-            
-            navigator.clipboard.writeText(text).then(() => {
-                const btn = document.querySelector('#odateResult .btn-success');
-                const originalText = btn.textContent;
-                btn.textContent = '✅ คัดลอกแล้ว!';
-                btn.classList.add('copied');
-                
-                setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.classList.remove('copied');
-                }, 2000);
-            }).catch(err => {
-                alert('ไม่สามารถคัดลอกได้: ' + err);
-            });
         }
     </script>
 </body>
